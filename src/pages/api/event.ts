@@ -10,7 +10,7 @@ interface IFacebookApiRequest extends NextApiRequest {
     event_source_url: string;
     client_user_agent: string; // navigator thingy
     external_id: string; // this is userID
-    isTest: string; // kung gusto mo makita sa events manager. lagay mo 'TESTXXXXX' replace with real testcode
+    test_event_code: string | null; // kung gusto mo makita sa events manager. lagay mo 'TESTXXXXX' replace with real testcode
   };
 }
 
