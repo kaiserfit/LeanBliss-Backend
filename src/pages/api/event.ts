@@ -57,7 +57,7 @@ export default async function Handler(
           },
         ],
         // test_event_code: req.body.isTest ? "TEST46387" : null,
-        test_event_code: req.body.isTest ? req.body.isTest : null,
+        test_event_code: req.body.test_event_code ? req.body.test_event_code : null,
       };
       const fbGraphAPIVersion = "v19.0";
       const fbPixelId = 759662146057719;
