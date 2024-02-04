@@ -1,16 +1,33 @@
+import { sha256 } from "js-sha256";
 import type { NextApiRequest, NextApiResponse } from "next";
 import NextCors from "nextjs-cors";
 
 interface IFacebookApiRequest extends NextApiRequest {
   body: {
-    event_id: string;
-    event_name: string; // viewcontent ganern
-    fbp: string;
-    fbc: string;
-    event_source_url: string;
-    client_user_agent: string; // navigator thingy
-    external_id: string; // this is userID
-    test_event_code: string | null; // kung gusto mo makita sa events manager. lagay mo 'TESTXXXXX' replace with real testcode
+    // Server Event Parameters 
+    event_id: string;               //[1]
+    event_name: string;             //[2]
+    event_source_url: string;       //[3]
+    // Customer Information Parameters 
+    // email: string;                  //{1}
+    // phone_number: string;           //{2}
+    // first_name: string;             //{3}
+    // last_name: string;              //{4}
+    // gender: string;                 //{5}
+    // birthday: string;               //{6}
+    city: string;                   //{7}
+    state: string;                  //{8}
+    zip_code: string;               //{9}
+    country: string;                //{10}
+    external_id: string;            //{11} | *This is userID
+    client_ip_address: string;      //{12}
+    client_user_agent: string;      //{13}
+    fbc: string;                    //{14}
+    fbp: string;                    //{15}
+    // subscription_id: string;        //{16}
+    // fb_login_id: string;            //{17}
+    // Main Body Parameters 
+    test_event_code: string | null; //(1) | *Get test code from Events manager
   };
 }
 
@@ -45,14 +62,23 @@ export default async function Handler(
             event_time: Math.floor(new Date().getTime() / 1000),
             event_source_url: req.body.event_source_url,
             user_data: {
-              client_user_agent: req.body.client_user_agent,
-              fbp: req.body.fbp,
-              fbc: req.body.fbc,
-              // em: req.body.em,
-              // country: user_location?.country,
-              // ct: user_location?.city,
-              // st: user_location?.region,
-              external_id: req.body.external_id,
+              // em: sha256(req.body.email),                    //{1}
+              // ph: sha256(req.body.phone_number),             //{2}
+              // fn: sha256(req.body.first_name),               //{3}
+              // ln: sha256(req.body.last_name),                //{4}
+              // ge: sha256(req.body.gender),                   //{5}
+              // db: sha256(req.body.birthday),                 //{6}
+              ct: sha256(req.body.city),                     //{7}
+              st: sha256(req.body.state),                    //{8}
+              zp: sha256(req.body.zip_code),                 //{9}
+              country: sha256(req.body.country),             //{10}
+              external_id: sha256(req.body.external_id),     //{11}
+              client_ip_address: req.body.client_ip_address, //{12}
+              client_user_agent: req.body.client_user_agent, //{13}
+              fbp: req.body.fbp,                             //{14}
+              fbc: req.body.fbc,                             //{15}
+              // subscription_id: req.body.subscription_id,     //{16}
+              // fb_login_id: req.body.fb_login_id              //{17}
             },
           },
         ],
