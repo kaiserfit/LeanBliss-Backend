@@ -68,14 +68,10 @@ export default async function Handler(
               // ln: sha256(req.body.last_name),                //{4}
               // ge: sha256(req.body.gender),                   //{5}
               // db: sha256(req.body.birthday),                 //{6}
-              // ct: sha256(req.body.city),                     //{7}
-              // st: sha256(req.body.state),                    //{8}
-              // zp: sha256(req.body.zip_code),                 //{9}
-              // country: sha256(req.body.country),             //{10}
-              ct: req.body.city,                     //{7}
-              st: req.body.state,                    //{8}
-              zp: req.body.zip_code,                 //{9}
-              country: req.body.country,             //{10}
+              ct: sha256(req.body.city),                     //{7}
+              st: sha256(req.body.state),                    //{8}
+              zp: sha256(req.body.zip_code),                 //{9}
+              country: sha256(req.body.country),             //{10}
               external_id: req.body.external_id,             //{11}
               client_ip_address: req.body.client_ip_address, //{12}
               client_user_agent: req.body.client_user_agent, //{13}
