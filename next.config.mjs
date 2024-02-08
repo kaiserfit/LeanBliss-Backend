@@ -3,15 +3,15 @@ const nextConfig = {
   reactStrictMode: true,
 };
 
-import withCors from 'nextjs-cors';
+import 'nextjs-cors';
 
-export default withCors({
+export default {
   // Your Next.js configuration options go here
   // For example:
   async headers() {
     return [
       {
-        source: 'src/pages/api/:path*',
+        source: '/api/:path*',
         headers: [
           { key: 'Access-Control-Allow-Origin', value: '*' },
           { key: 'Access-Control-Allow-Methods', value: 'GET, POST, PUT, DELETE, OPTIONS' },
@@ -20,6 +20,6 @@ export default withCors({
       },
     ];
   },
-});
+};
 
 export default nextConfig;
