@@ -3,9 +3,9 @@ const nextConfig = {
   reactStrictMode: true,
 };
 
-const withCors = require('nextjs-cors');
+import withCors from 'nextjs-cors';
 
-module.exports = withCors({
+export default withCors({
   // Your Next.js configuration options go here
   // For example:
   async headers() {
