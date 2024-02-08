@@ -11,7 +11,7 @@ export default {
   async headers() {
     return [
       {
-        source: '/api/:path*',
+        source: 'src/pages/api/:path*',
         headers: [
           { key: 'Access-Control-Allow-Origin', value: '*' },
           { key: 'Access-Control-Allow-Methods', value: 'GET, POST, PUT, DELETE, OPTIONS' },
