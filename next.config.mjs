@@ -3,24 +3,15 @@ const nextConfig = {
   reactStrictMode: true,
 };
 
-module.exports = {
+import NextCors from 'nextjs-cors';
+
+export default {
   reactStrictMode: true, // Enable strict mode for React
-  images: {
-    domains: ['livestronger.net'], // Allow images from this domain
-  },
-  async redirects() {
-    return [
-      {
-        source: '/old-route',
-        destination: '/new-route',
-        permanent: true, // 301 redirection
-      },
-    ];
-  },
+  // Your other Next.js configuration options go here
   async headers() {
     return [
       {
-        source: 'src/pages/api/:path*', // CORS headers for API routes
+        source: '/api/:path*',
         headers: [
           { key: 'Access-Control-Allow-Origin', value: '*' },
           { key: 'Access-Control-Allow-Methods', value: 'GET, POST, PUT, DELETE, OPTIONS' },
@@ -28,6 +19,10 @@ module.exports = {
         ],
       },
     ];
+  },
+  async serverMiddleware() {
+    // Enable CORS for all routes
+    this.nuxt.options.serverMiddleware.push(NextCors());
   },
 };
 
