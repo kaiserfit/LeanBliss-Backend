@@ -15,12 +15,12 @@ interface IFacebookApiRequest extends NextApiRequest {
     // last_name: string;              //{4}
     // gender: string;                 //{5}
     // birthday: string;               //{6}
-    city: string;                   //{7}
-    state: string;                  //{8}
-    zip_code: string;               //{9}
-    country: string;                //{10}
+    // city: string;                   //{7}
+    // state: string;                  //{8}
+    // zip_code: string;               //{9}
+    // country: string;                //{10}
     external_id: string;            //{11} | *This is userID
-    client_ip_address: string;      //{12}
+    // client_ip_address: string;      //{12}
     client_user_agent: string;      //{13}
     fbc: string;                    //{14}
     fbp: string;                    //{15}
@@ -68,12 +68,12 @@ export default async function Handler(
               // ln: sha256(req.body.last_name),                //{4}
               // ge: sha256(req.body.gender),                   //{5}
               // db: sha256(req.body.birthday),                 //{6}
-              ct: sha256(req.body.city),                     //{7}
-              st: sha256(req.body.state),                    //{8}
-              zp: sha256(req.body.zip_code),                 //{9}
-              country: sha256(req.body.country),             //{10}
+              // ct: sha256(req.body.city),                     //{7}
+              // st: sha256(req.body.state),                    //{8}
+              // zp: sha256(req.body.zip_code),                 //{9}
+              // country: sha256(req.body.country),             //{10}
               external_id: req.body.external_id,             //{11}
-              client_ip_address: req.body.client_ip_address, //{12}
+              // client_ip_address: req.body.client_ip_address, //{12}
               client_user_agent: req.body.client_user_agent, //{13}
               fbp: req.body.fbp,                             //{14}
               fbc: req.body.fbc,                             //{15}
